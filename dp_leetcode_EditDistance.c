@@ -39,7 +39,7 @@ int minDistance(char* word1, char* word2) {      //Goal : convert word1 to word2
 
 
 
-	//use function to fill up array first
+	//   fill up array first
 	for (int i = 0;i < 2;i++)
 		for (int j = 0;j < (length1 + 1);j++)
 			DParray[i][j] = 0;
