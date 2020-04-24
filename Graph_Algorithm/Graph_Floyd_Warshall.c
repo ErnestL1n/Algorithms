@@ -12,23 +12,21 @@
 //https://devpost.com/Louis1992
 
 //page690   Figure 25.1
+
 /*
-    adjacency matrix
+    adjacency matrix:
 
-
-
-	 i    
+     i    
  j       (1)     (2)     (3)     (4)     (5)
     (1)   0       3       8      INF     -4
 
-	(2)  INF      0      INF      1       7
+    (2)  INF      0      INF      1       7
 
     (3)  INF      4       0      INF     INF
 
-	(4)   2      INF     -5       0      INF
+    (4)   2      INF     -5       0      INF
 
-	(5)  INF     INF     INF      6       0 
-
+    (5)  INF     INF     INF      6       0 
 
 */
 
@@ -61,7 +59,7 @@ void Floyd_Warshell(int Graph[][V+1]) {
 			/*
 				Pi_ij(k)={
 				          NIL                                         ,if wij=0 or i=j
-						  i                                           ,else
+						  i                                   ,else
 						 }
 			*/
 			if (i == j || Graph[i][j] == INF) Pi[i][j] = INF;
@@ -78,16 +76,17 @@ void Floyd_Warshell(int Graph[][V+1]) {
 
 				/* 
 				Dij(k)={  
-				          wij                                       ,if k=0
-				          min{Dij(k-1), Dik(k-1)+Dkj(k-1)}          ,if k>=1
-					   }
+				          wij                                        ,if k=0
+				          min{Dij(k-1), Dik(k-1)+Dkj(k-1)}           ,if k>=1
+				        }
 				*/
 
 
 				/*
-				Pi_ij(k)={  Pi_kj(k-1)                              ,if Dij(k-1)>Dik(k-1)+Dkj(k-1)
-						    Pi_ij(k-1)                              ,else
-					     }
+				Pi_ij(k)={
+				            Pi_kj(k-1)                               ,if Dij(k-1)>Dik(k-1)+Dkj(k-1)
+					    Pi_ij(k-1)                               ,else
+					 }
 				*/
 
 				if (Dist[i][k] + Dist[k][j] < Dist[i][j]) {
@@ -142,11 +141,11 @@ int main()
 {
 	int graph[V+1][V+1] = {
 		{INF, INF, INF, INF, INF, INF},
-		{INF, 0,   3,  8, INF, -4},
-		{INF,INF, 0, INF,  1, 7},
-		{INF,INF, 4, 0,   INF,INF},
-		{INF,2, INF, -5, 0, INF},
-		{INF,INF, INF, INF, 6, 0}
+		{INF, 0, 3, 8, INF, -4},
+		{INF, INF, 0, INF, 1, 7},
+		{INF, INF, 4, 0, INF, INF},
+		{INF, 2, INF, -5, 0, INF},
+		{INF, INF, INF, INF, 6, 0}
 	};
 
 
