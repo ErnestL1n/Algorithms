@@ -65,12 +65,12 @@ void MATRIX_CHAIN_ORDER(int *p, int **m, int **s, int n)
 void PRINT_OPTIMAL_PARENS(int **s, int i, int j)
 {
 	if (i == j)
-		printf("A%d*", i);
+		printf("A%d", i);
 	else {
 		printf("(");
 		PRINT_OPTIMAL_PARENS(s, i, s[i][j]);
 		PRINT_OPTIMAL_PARENS(s, s[i][j] + 1, j);
-		printf("\b)");
+		printf(")");
 	}
 }
 
