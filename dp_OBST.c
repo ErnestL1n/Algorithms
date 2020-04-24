@@ -26,7 +26,7 @@ double q[Nodes + 1] = {0.05, 0.1, 0.05, 0.05, 0.05, 0.1   };
 
 //declare arrays :
 //for recording root for i,j
-int root[5][5];
+int root[Nodes][Nodes];
 //for recording sum of probabilities
 double w[Nodes + 2][Nodes + 2];
 //for recording search costs
