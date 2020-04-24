@@ -59,7 +59,7 @@ void Floyd_Warshell(int Graph[][V+1]) {
 			/*
 				Pi_ij(k)={
 				          NIL                                         ,if wij=0 or i=j
-						  i                                   ,else
+				           i                                          ,else
 						 }
 			*/
 			if (i == j || Graph[i][j] == INF) Pi[i][j] = INF;
