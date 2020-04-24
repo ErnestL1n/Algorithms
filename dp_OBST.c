@@ -2,6 +2,9 @@
 //https://github.com/ErnestL1n/
 
 
+//Note:In some cases,No dummy keys are given,set their values as 0
+
+
 #include<stdio.h>
 #include<stdlib.h>
 #include<limits.h>
@@ -114,7 +117,7 @@ void Construct_And_Print_OBST(int i, int j, int r)
 		if (RootChild < r)
 			printf("K%d is the left  child of K%d\n", RootChild, r);
 		else
-			printf("D%d is the right child of K%d\n", RootChild, r);
+			printf("K%d is the right child of K%d\n", RootChild, r);
 	}
 
 	Construct_And_Print_OBST(i, RootChild - 1, RootChild);
