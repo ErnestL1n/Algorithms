@@ -3,7 +3,7 @@
 
 
 //Greedy Fractional Knapsack Problem
-
+//Time complexity is bounded by sorting=>O(n log n)
 //Author:https://github.com/ErnestL1n
 
 //define struct Items
