@@ -28,7 +28,7 @@ int compare(items *A, items *B) {
 
 
 //sort items on basis of ratio 
-//Note the compare function return value<0  => A is before B after sort
+//Note the compare function return value<0  => A is before B after sorting
 void sort(items* array, int arrayLen) {
 	qsort(array, (size_t)arrayLen, sizeof(items), compare);
 }
