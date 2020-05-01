@@ -58,7 +58,8 @@ void sort(jobs* array, int arrayLen) {
 //b) If no such i exists, then ignore the job.
 
 
-void printJobsSelected(jobs array[],int n) {
+//Time complexity:O(n^2)
+int JobsSelected(jobs array[],int n) {
 
 	/* sort jobs array first,in non-increasing order */
 	sort(array,n);
@@ -68,13 +69,13 @@ void printJobsSelected(jobs array[],int n) {
 	//"0"=>free time slot
 
 	int *timeslot = (int*)calloc(n, sizeof(int));
-	int *findJob = (int*)malloc(sizeof(int)*n);
+	int *findJob = (int*)calloc(n, sizeof(int));
 
 
 	for (int i = 0;i < n;i++)
 	{
 		//checks slot from array[i] downto 0
-		for (int index = minimum(n, array[i].Deadline);index >= 0;index--)
+		for (int index = minimum(n, array[i].Deadline)-1;index >= 0;index--)
 		{
 			if (!timeslot[index]) {
 				findJob[index] = i;
@@ -83,19 +84,32 @@ void printJobsSelected(jobs array[],int n) {
 			}
 		}
 	}
+	int totalprofit = 0;
 	for (int i = 0;i < n;i++) {
-		if (timeslot[i])
-			printf("%d\t", array[findJob[i]].JobNumber);
+		if (timeslot[i]) {
+			printf("Job%d\t", array[findJob[i]].JobNumber);
+			totalprofit += array[findJob[i]].profit;
+		}
 	}
+	printf("are selected\n\n");
+
+	return totalprofit;
 }
 
 // Driver program to test methods 
 int main()
 {
-	jobs array[] = { {1, 2, 100}, {2, 1, 19}, {3, 2, 27},
-				   {4, 1, 25}, {5, 3, 15} };
+	jobs array[] = { {1, 2, 40}, {2, 4, 15}, {3, 3, 60},
+				     {4, 2, 20}, {5, 3, 10}, {6, 1, 45}, 
+	                 {7, 1, 55} };
+
+	printf("JobNumber\t DeadLine\t Profit\n");
 	int n = sizeof(array) / sizeof(array[0]);
-	
-	printJobsSelected(array, n);
+	for (int i = 0;i < n;i++)
+		printf("%5d\t\t%5d\t\t%5d\n", array[i].JobNumber, array[i].Deadline, array[i].profit);
+	printf("\n");
+	printf("Select jobs and Maximum the total profit within deadlines:\n");
+	printf("\n");
+	printf("Total profit is: %d\n", JobsSelected(array, n));
 	return 0;
 }
