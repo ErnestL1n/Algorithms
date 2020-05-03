@@ -105,7 +105,7 @@ int JobsSelected(jobs array[], int n) {
 	//for maximum deadline among all jobs
 	int MaxDeadLine = findMaxDeadline(array, n);
 
-	//Build disjoint set data structure
+	//Build disjoint set data structure with size MaxDeadLine is enough
 	MakeSet(MaxDeadLine);
 
 
