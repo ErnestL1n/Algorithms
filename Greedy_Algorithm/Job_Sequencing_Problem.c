@@ -4,7 +4,7 @@
 
 //Greedy Job_Sequencing_Problem
 //An efficient way to implement disjoint set data structures
-//in another c file in my github site
+//in another .c file in my github site
 
 //Author:https://github.com/ErnestL1n
 
