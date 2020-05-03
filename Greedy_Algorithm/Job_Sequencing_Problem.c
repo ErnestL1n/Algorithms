@@ -21,6 +21,7 @@ typedef struct Job {
 
 
 
+
 //utility function to return min
 int minimum(int a, int b) {
 	return a < b ? a : b;
