@@ -102,7 +102,8 @@ int main()
 {
 	jobs array[] = { {1, 2, 40}, {2, 4, 15}, {3, 3, 60},
 				     {4, 2, 20}, {5, 3, 10}, {6, 1, 45}, 
-	                 {7, 1, 55} };
+	                 {7, 1, 55} 
+	};
 
 	printf("JobNumber\t DeadLine\t Profit\n");
 	int n = sizeof(array) / sizeof(array[0]);
