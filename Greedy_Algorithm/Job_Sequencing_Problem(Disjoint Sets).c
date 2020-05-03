@@ -109,7 +109,7 @@ int JobsSelected(jobs array[], int n) {
 	MakeSet(MaxDeadLine);
 
 
-	//profit to be return
+	// profit to be return
 	int totalprofit = 0;
 
 
@@ -117,8 +117,11 @@ int JobsSelected(jobs array[], int n) {
 
 		int freeTimeSlot = FindSet(array[i].Deadline);
 
-	
+	    // we don't use slot 0,since deadline>=1
+
 		if (freeTimeSlot > 0) {
+			// parent[freeTimeSlot]=FindSet(freeTimeSlot - 1);
+			// next time,we know that deadline's freeTimeSlot is full,since we call Find,it returns its parent
 			SimpleUnion(FindSet(freeTimeSlot - 1), freeTimeSlot);
 
 			printf("Job%d\t", array[i].JobNumber);
@@ -138,7 +141,8 @@ int main()
 {
 	jobs array[] = { {1, 2, 40}, {2, 4, 15}, {3, 3, 60},
 					 {4, 2, 20}, {5, 3, 10}, {6, 1, 45},
-					 {7, 1, 55} };
+					 {7, 1, 55}
+	};
 
 	printf("JobNumber\t DeadLine\t Profit\n");
 	int n = sizeof(array) / sizeof(array[0]);
