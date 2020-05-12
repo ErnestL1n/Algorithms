@@ -33,6 +33,7 @@ int visited[Citys + 1];
 int PrintPath(int city) {
 
 	for (int i = 0;i <= Citys;i++)visited[i] = 0;
+	int numberofcities;
 
 
 };
@@ -41,7 +42,7 @@ int PrintPath(int city) {
 
 int main()
 {
-	int graph[V + 1][V + 1] = {
+	int graph[Citys + 1][Citys + 1] = {
 		{INF, INF, INF, INF, INF, INF},
 		{INF, 0, 3, 8, INF, -4},
 		{INF, INF, 0, INF, 1, 7},
