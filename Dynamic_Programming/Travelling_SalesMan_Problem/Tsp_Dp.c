@@ -1,59 +1,65 @@
-//author:
-//https://github.com/ErnestL1n/
+#include <stdio.h>
+#include <limits.h>
 
+#define size 10 //maximum 10 cities
+#define minimum(a,b) a<b?a:b
+#define sizePOW 1024 // 2^10
 
-#include<stdio.h>
-#include<stdlib.h>
-#include<limits.h>
-#include<string.h>
+int n, npow, g[size][sizePOW], p[size][sizePOW], adj[size][size];
 
-//reference:
-//Foundations of Algorithms, Fifth Edition,Richard Neapolitan
-//graph: CLRS 3/E page690   Figure 25.1
-
-/*
-	adjacency matrix:
-	 i
- j       (1)     (2)     (3)     (4)     (5)
-	(1)   0       3       8      INF     -4
-	(2)  INF      0      INF      1       7
-	(3)  INF      4       0      INF     INF
-	(4)   2      INF     -5       0      INF
-	(5)  INF     INF     INF      6       0
-*/
-
-
-#define INF 999999
-#define Citys 5
-
-//we don't use index 0
-int City[Citys + 1][Citys + 1];
-int visited[Citys + 1];
-
-int PrintPath(int city) {
-
-	for (int i = 0;i <= Citys;i++)visited[i] = 0;
-	int numberofcities;
-
-
-};
-
-
-
-int main()
+int compute(int start, int set)
 {
-	int graph[Citys + 1][Citys + 1] = {
-		{INF, INF, INF, INF, INF, INF},
-		{INF, 0, 3, 8, INF, -4},
-		{INF, INF, 0, INF, 1, 7},
-		{INF, INF, 4, 0, INF, INF},
-		{INF, 2, INF, -5, 0, INF},
-		{INF, INF, INF, INF, 6, 0}
-	};
+	int masked, mask, result = INT_MAX, temp, i;
 
+	if (g[start][set] != -1)
+		return g[start][set];
+	for (i = 0;i < n;i++)
+	{
+		mask = (npow - 1) - (1 << i);
+		masked = set & mask;
+		if (masked != set)
+		{
+			temp = adj[start][i] + compute(i, masked);
+			if (temp < result)
+				result = temp, p[start][set] = i;
+		}
+	}
+	return g[start][set] = result;
+}
 
-	//result is shown the same as Introduction to Algorithms, 3/e p.696
-	Floyd_Warshell(graph);
-
+void getpath(int start, int set)
+{
+	if (p[start][set] == -1) return;
+	int x = p[start][set];
+	int mask = (npow - 1) - (1 << x);  // What is the use of this line
+	int masked = set & mask;
+	printf("%d ", x);
+	getpath(x, masked);
+}
+void TSP()
+{
+	int i, j;
+	//g(i,S) is length of shortest path starting at i visiting all vertices in S and ending at 1
+	for (i = 0;i < n;i++)
+		for (j = 0;j < npow;j++)
+			g[i][j] = p[i][j] = -1;
+	for (i = 0;i < n;i++)
+		g[i][0] = adj[i][0];
+	int result = compute(0, npow - 2);
+	printf("Tour cost:%d\n", result);
+	printf("Tour path:\n0 ");
+	getpath(0, npow - 2);
+	printf("0\n");
+}
+int main(void) {
+	int i, j;
+	printf("Enter number of cities\n");
+	scanf_s("%d", &n);
+	npow = (int)pow(2, n);//bit number required to represent all possible sets
+	printf("Enter the adjacency matrix\n");
+	for (i = 0;i < n;i++)
+		for (j = 0;j < n;j++)
+			scanf_s("%d", &adj[i][j]);
+	TSP();
 	return 0;
 }
