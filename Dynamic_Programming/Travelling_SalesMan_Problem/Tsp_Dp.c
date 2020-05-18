@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <limits.h>
 
+
+//haven't finished
 #define size 10 //maximum 10 cities
 #define minimum(a,b) a<b?a:b
 #define sizePOW 1024 // 2^10
